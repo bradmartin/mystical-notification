@@ -6,14 +6,6 @@
 
 <!--![MysticalNotification](screens/demo.gif)-->
 
-### Explanation
-I needed a simple auto complete component for a web app that supported keyboard navigation.
-I wanted something light weight and flexible.
-After searching around, nothing fit my use case or desire. The component
-defaults to Material Design-like styling. This is customizable by setting `itemClass` and `listClass` when creating the component. PRs welcome to improve functionality.
-Just want to keep this light weight :smile:
-
-
 ### Installation
 `npm install mystical-notification`
 
