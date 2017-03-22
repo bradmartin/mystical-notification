@@ -1,0 +1,34 @@
+{
+  "name": "mystical-notification",
+  "version": "0.1.0",
+  "description": "Web alerts I needed.",
+  "main": "dist/mystical",
+  "typings": "index.d.ts",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/bradmartin/mystical-notification"
+  },
+  "scripts": {
+    "clean-dist": "rimraf dist",
+    "dev": "node_modules/.bin/webpack-dev-server",
+    "build": "webpack   --progress --colors -p"
+  },
+  "keywords": [
+    "TypeScript",
+    "bradmartin",
+    "notification",
+    "alert"
+  ],
+  "author": "Brad Martin <bradwaynemartin@gmail.com> (https://github.com/bradmartin)",
+  "license": "Apache-2.0",
+  "bugs": "https://github.com/bradmartin/mystical-notification/issues",
+  "homepage": "https://github.com/bradmartin/mystical-notification",
+  "devDependencies": {
+    "awesome-typescript-loader": "^3.1.2",
+    "typescript": "^2.2.1",
+    "uglify-js": "^2.8.11",
+    "uglifyjs-webpack-plugin": "^0.3.0",
+    "webpack": "^2.2.1",
+    "webpack-dev-server": "^2.4.1"
+  }
+}

@@ -1,0 +1,12 @@
+*.js
+!demo/*.js
+!dist/*.js
+!webpack.config.js
+*.js.map
+*.log
+*.d.ts
+!index.d.ts
+demo/*.d.ts
+demo/node_modules
+node_modules
+.vscode/
