@@ -66,19 +66,15 @@ export class Mystical {
         console.log(position);
         if (position === "top") {
             note.classList.remove(this.SLIDE_IN_DOWN)
-            setTimeout(() => {
-                note.classList.add(this.SLIDE_OUT_UP)
-            }, 100);
+            note.classList.add(this.SLIDE_OUT_UP)
         } else {
             note.classList.remove(this.SLIDE_IN_UP)
-            setTimeout(() => {
-                note.classList.add(this.SLIDE_OUT_DOWN)
-            }, 100);
+            note.classList.add(this.SLIDE_OUT_DOWN)
         }
 
-        // setTimeout(() => {
-        //     document.body.removeChild(note)
-        // }, 2000);
+        setTimeout(() => {
+            document.body.removeChild(note)
+        }, 1000);
 
     }
 
