@@ -1,9 +1,9 @@
 {
   "name": "mystical-notification",
-  "version": "0.3.0",
+  "version": "0.3.1",
   "description": "Web alerts I needed.",
   "main": "dist/mystical",
-  "typings": "index.d.ts",
+  "typings": "dist/index.d.ts",
   "repository": {
     "type": "git",
     "url": "https://github.com/bradmartin/mystical-notification"

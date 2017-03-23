@@ -1,7 +1,8 @@
 [![npm](https://img.shields.io/npm/v/mystical-notification.svg)](https://www.npmjs.com/package/mystical-notification)
 [![npm](https://img.shields.io/npm/dt/mystical-notification.svg?label=npm%20downloads)](https://www.npmjs.com/package/mystical-notification)
 # Mystical-Notification
-#### Just some notification crap I needed for a web app. Could use some TLC.
+## What is it?
+ Fully customizable alert notifications. Current types are *alert* and *confirm*. Two positions for now are *top* and *bottom*.
 
 
 
@@ -31,16 +32,26 @@ mystical.Mystical.alert({
 ```
 
 ### Public Methods
-- `alert(options: MysticalOptions)` - show simple notification
+- `alert(options: AlertOptions)` - shows simple alert notification
+- `confirm(options: ConfirmOptions)` - shows a confirmation notification
 
 
-### MysticalOptions 
+### Options Interfaces 
 ```ts
-interface MysticalOptions {
+interface AlertOptions {
     template: string;
     backgroundColor?: string;
     color?: string;
     position?: string; // top or bottom for now
+}
+
+interface ConfirmOptions {
+    template: string;
+    backgroundColor?: string;
+    color?: string;
+    position?: string;
+    positiveText?: string;
+    negativeText?: string;
 }
 ```
 ### Contributing
