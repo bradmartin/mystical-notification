@@ -1,10 +1,16 @@
 function note1() {
-  mystical.Mystical.alert({
-    position: "bottom",
-    template: `
-          <p>You deserve a beer Gabe </p>
+  mystical.Mystical
+    .confirm({
+      position: "bottom",
+      positiveText: "Hell yeah",
+      negativeText: "No Dammit",
+      template: `
+          <p> Are you sure you want another beer? </p>
     `
-  });
+    })
+    .then(result => {
+      console.log(result);
+    });
 }
 
 function note2() {

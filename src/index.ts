@@ -2,12 +2,14 @@ export class Mystical {
     private static bgColor: string = "#333"
     private static fgColor: string = "#fff"
     private static position: string = "top"
+    private static positiveText: string = "Yes"
+    private static negativeText: string = "No"
 
     /**
      * Creates a simple notification
      * @param opts [MysticalOptions] - The mystical notifications options.
      */
-    public static alert(opts: MysticalOptions) {
+    public static alert(opts: AlertOptions) {
         const defaults = this.createDefaultOpts(opts)
 
         // create the main note div
@@ -32,7 +34,98 @@ export class Mystical {
                     ${opts.template}
                 </div>
         `
+        const iStyles = this.setInitStyles(defaults, note)
 
+        // add the note div to the DOM
+        document.body.appendChild(note)
+        note.focus()
+
+        // after the note div is on the DOM - to trigger the CSS transition
+        this.startTransition(defaults, note, iStyles.top, iStyles.bottom)
+
+    }
+
+    /**
+     * Create a yes/no confirmation note
+     * @param opts [ConfirmOptions]
+     */
+    public static confirm(opts: ConfirmOptions): Promise<boolean> {
+        return new Promise((resolve, reject) => {
+
+            const defaults = this.createDefaultOpts(opts)
+
+            // create the main note div
+            const note = document.createElement("div") as HTMLDivElement
+            note.id = this.generateRandomId()
+            note.tabIndex = -1
+            note.style.cssText = `background-color: ${defaults.bg}; border: none; user-select: none; -webkit-tap-highlight-color: rgba(255, 255, 255, 0); outline: none; color: ${defaults.fg}; position: fixed; left: 0; padding: 10px; width: 100%; transition: all 0.5s ease; margin: 0 auto; overflow-x: hidden;`
+
+            // close on enter and escape key press
+            note.onkeydown = (ev: KeyboardEvent) => {
+                if (ev.keyCode === 13 || ev.keyCode === 27) {
+                    this.removeNoteFromDom(note.id, defaults.pos)
+                    resolve(false)
+                }
+            }
+
+            const positiveBtnId = this.generateRandomId()
+            const negativeBtnId = this.generateRandomId()
+            const buttonStyle = `color: ${defaults.fg}; background-color: ${defaults.bg}; cursor: pointer; border: none; background: transparent; outline: none; margin-right: 10px; font-size: 1.1em`
+
+            note.innerHTML = `
+                <div style="position: relative">
+                    ${opts.template}
+                    <div style="display:inline-block; text-align: center; margin: auto; width: 100%">
+                        <button id="${positiveBtnId}" style="${buttonStyle}">${defaults.posText}</button>
+                        <button id="${negativeBtnId}"  style="${buttonStyle}">${defaults.negText}</button>
+                    </div>
+                </div>
+        `
+
+            const iStyles = this.setInitStyles(defaults, note)
+
+            // add the note div to the DOM
+            document.body.appendChild(note)
+            note.focus()
+
+            // positive btn event
+            const positiveBtn = document.getElementById(positiveBtnId)
+            positiveBtn.onclick = () => {
+                resolve(true)
+                this.removeNoteFromDom(note.id, defaults.pos)
+            }
+
+            // negative btn event
+            const negativeBtn = document.getElementById(negativeBtnId)
+            negativeBtn.onclick = () => {
+                resolve(false)
+                this.removeNoteFromDom(note.id, defaults.pos)
+            }
+
+            // after the note div is on the DOM - to trigger the CSS transition
+            this.startTransition(defaults, note, iStyles.top, iStyles.bottom)
+
+        })
+
+    }
+
+
+    private static startTransition(defaults, note, top, bottom) {
+        // set the top/bottom which will start the transition
+        if (defaults.pos === "top") {
+            this.tick().then(() => {
+                note.style.top = top
+                note.style.opacity = "1"
+            })
+        } else {
+            this.tick().then(() => {
+                note.style.bottom = bottom
+                note.style.opacity = "1"
+            })
+        }
+    }
+
+    private static setInitStyles(defaults, note) {
         let top: any
         let bottom: any
         // set initial top/bottom position
@@ -46,24 +139,7 @@ export class Mystical {
             note.style.bottom = "-200px"
         }
 
-        // add the note div to the DOM
-        document.body.appendChild(note)
-        note.focus()
-
-        // after the note div is on the DOM - to trigger the CSS transition
-        // set the top/bottom which will start the transition
-        if (defaults.pos === "top") {
-            this.tick().then(() => {
-                note.style.top = top
-                note.style.opacity = "1"
-            })
-        } else {
-            this.tick().then(() => {
-                note.style.bottom = bottom
-                note.style.opacity = "1"
-            })
-        }
-
+        return { top: top, bottom: bottom }
     }
 
     /**
@@ -72,14 +148,16 @@ export class Mystical {
      * @param position - note position
      */
     private static removeNoteFromDom(id, position) {
-        const note = document.getElementById(id)
+        let note = document.getElementById(id)
         if (position === "top") {
             note.style.top = "-150px"
         } else {
             note.style.bottom = "-150px"
         }
+
         this.wait(500).then(() => {
-            document.body.removeChild(note)
+            if (note)
+                document.body.removeChild(note)
         })
     }
 
@@ -110,7 +188,9 @@ export class Mystical {
         const bg = opts.backgroundColor ? opts.backgroundColor : this.bgColor
         const fg = opts.color ? opts.color : this.fgColor
         const pos = opts.position ? opts.position : this.position
-        return { bg, fg, pos }
+        const posText = opts.positiveText ? opts.positiveText : this.positiveText
+        const negText = opts.negativeText ? opts.negativeText : this.negativeText
+        return { bg, fg, pos, posText, negText }
     }
 
     /**
@@ -123,22 +203,17 @@ export class Mystical {
 
 }
 
-
-export interface MysticalOptions {
+export interface AlertOptions {
     template: string;
     backgroundColor?: string;
     color?: string;
     position?: string;
 }
-
-   // note.innerHTML = `
-        //             <div style="position: relative">
-        //                     <button type="button" id="${note.id}-button" style="position: fixed; background: transparent; outline: none; border: none; top: 5px; margin: 0; right: 0.5%;">
-        //                         <svg fill="${defaults.fg}" height="24" viewBox="0 0 24 24" width="24" xmlns="http://www.w3.org/2000/svg">
-        //                             <path d="M19 6.41L17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"/>
-        //                             <path d="M0 0h24v24H0z" fill="none"/>
-        //                         </svg>
-        //                     </button>
-        //                 ${opts.template}
-        //             </div>
-        //     `
+export interface ConfirmOptions {
+    template: string;
+    backgroundColor?: string;
+    color?: string;
+    position?: string;
+    positiveText?: string;
+    negativeText?: string;
+}

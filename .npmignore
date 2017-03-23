@@ -13,9 +13,10 @@ app/
 *.ts
 *.js.map
 *.md
-!cacheautocomplete.d.ts
+!index.d.ts
 tsconfig.json
 src/
 node_modules/
 README.md
 webpack.config.js
+yarn.lock
