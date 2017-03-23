@@ -2,7 +2,6 @@ function note1() {
   mystical.Mystical.alert({
     position: "bottom",
     template: `
-          <h3>Hello</h3>
           <p>You deserve a beer Gabe </p>
     `
   });

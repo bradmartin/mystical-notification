@@ -4,7 +4,12 @@
 #### Just some notification crap I needed for a web app. Could use some TLC.
 
 
-<!--![MysticalNotification](screens/demo.gif)-->
+
+| Sample Desktop        | Sample Mobile
+| ------------- |:-------------:|
+| ![MysticalNotification](screens/mystical2.gif)     | ![MysticalMobile](screens/mystical.gif)
+
+
 
 ### Installation
 `npm install mystical-notification`
@@ -39,6 +44,6 @@ interface MysticalOptions {
 }
 ```
 ### Contributing
-- `git clonehttps://github.com/bradmartin/mystical-notification.git`
+- `git clone https://github.com/bradmartin/mystical-notification.git`
 - `npm install` - install deps
 - `npm run dev` - will transpile and kick off the webpack dev server

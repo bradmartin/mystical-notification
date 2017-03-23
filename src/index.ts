@@ -14,7 +14,7 @@ export class Mystical {
         const note = document.createElement("div") as HTMLDivElement
         note.id = this.generateRandomId()
         note.tabIndex = -1
-        note.style.cssText = `background-color: ${defaults.bg}; border: none; outline: none; cursor: pointer; color: ${defaults.fg}; position: fixed; left: 0; padding: 10px; width: 100%; transition: all 0.5s ease; margin: 0 auto; overflow-x: hidden;`
+        note.style.cssText = `background-color: ${defaults.bg}; border: none; user-select: none; -webkit-tap-highlight-color: rgba(255, 255, 255, 0); outline: none; cursor: pointer; color: ${defaults.fg}; position: fixed; left: 0; padding: 10px; width: 100%; transition: all 0.5s ease; margin: 0 auto; overflow-x: hidden;`
 
         // add click event
         note.onclick = () => {
