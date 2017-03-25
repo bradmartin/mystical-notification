@@ -22,6 +22,7 @@
 mystical.Mystical.alert({
     color: "#ff4081",
     backgroundColor: "#222",
+    position: "bottom",
     template: `
       <div style="padding: 5px">
           <h3> Go Away </h3>
@@ -43,15 +44,17 @@ interface AlertOptions {
     backgroundColor?: string;
     color?: string;
     position?: string; // top or bottom for now
+    backdrop?: boolean; // default = true
 }
 
 interface ConfirmOptions {
     template: string;
-    backgroundColor?: string;
-    color?: string;
-    position?: string;
-    positiveText?: string;
-    negativeText?: string;
+    backgroundColor?: string; // default #333
+    color?: string; // default #fff
+    position?: string; // top or bottom for now
+    backdrop?: boolean; // default = true
+    positiveText?: string; // default = "Yes"
+    negativeText?: string; // default = "No"
 }
 ```
 ### Contributing
