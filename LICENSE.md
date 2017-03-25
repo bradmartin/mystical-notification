@@ -1,6 +1,6 @@
 The MIT License (MIT) - do whatever you want with this - just don't be a bitch about it.
 
-cache-autocomplete
+mystical-notification
 Copyright (c) 2017, Brad Martin
 
 Permission is hereby granted, free of charge, to any person obtaining a copy of
