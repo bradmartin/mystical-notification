@@ -44,6 +44,7 @@ interface AlertOptions {
     backgroundColor?: string;
     color?: string;
     position?: string; // top or bottom for now
+    duration?: number // default is indefinite  so alert is show until user action
     backdrop?: boolean; // default = true
 }
 
