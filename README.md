@@ -1,6 +1,10 @@
 [![npm](https://img.shields.io/npm/v/mystical-notification.svg)](https://www.npmjs.com/package/mystical-notification)
 [![npm](https://img.shields.io/npm/dt/mystical-notification.svg?label=npm%20downloads)](https://www.npmjs.com/package/mystical-notification)
 # Mystical-Notification
+
+## Working Plunker
+https://embed.plnkr.co/mp4hehLvOFLat3tLwN5j/
+
 ## What is it?
  Fully customizable alert notifications. Current types are *alert* and *confirm*. Two positions for now are *top* and *bottom*.
 
