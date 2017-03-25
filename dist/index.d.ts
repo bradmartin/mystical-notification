@@ -16,6 +16,7 @@ export interface AlertOptions {
     color?: string;
     position?: string;
     backdrop?: boolean;
+    duration?: number;
 }
 export interface ConfirmOptions {
     template: string;

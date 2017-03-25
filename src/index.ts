@@ -44,6 +44,12 @@ export class Mystical {
         // after the note div is on the DOM - to trigger the CSS transition
         startTransition(defaults, note, iStyles.top, iStyles.bottom)
 
+        if (defaults.duration !== undefined) {
+            wait(defaults.duration).then(() => {
+                removeNoteFromDom(note, backdrop, defaults.pos)
+            })
+        }
+
     }
 
     /**
@@ -227,9 +233,10 @@ function initDefaults(opts) {
     const fg = opts.color ? opts.color : "#fff"
     const pos = opts.position ? opts.position : "top"
     const backdrop = opts.backdrop ? opts.backdrop : true
+    const duration = opts.duration ? opts.duration : undefined
     const posText = opts.positiveText ? opts.positiveText : "Yes"
     const negText = opts.negativeText ? opts.negativeText : "No"
-    return { bg, fg, pos, backdrop, posText, negText }
+    return { bg, fg, pos, backdrop, duration, posText, negText }
 }
 
 /**
@@ -246,6 +253,7 @@ export interface AlertOptions {
     color?: string
     position?: string
     backdrop?: boolean
+    duration?: number
 }
 export interface ConfirmOptions {
     template: string
