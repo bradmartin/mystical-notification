@@ -32,6 +32,26 @@ mystical.Mystical.alert({
   });
 ```
 
+### TS
+```ts
+import { Mystical } from "mystical-notification"
+
+public makeUserChoose() {
+    Mystical.confirm({
+        backgroundColor: "#fff000",
+        color: "#333",
+        position: "bottom",
+        positiveText: "Do it!",
+        negativeText: "Never!"
+    }).then((result: boolean) => {
+        if (result === true) {
+            /// user clicked positive(confirm) button
+            console.log("Party on Wayne")
+        }
+    })
+}
+```
+
 ### Public Methods
 - `alert(options: AlertOptions)` - shows simple alert notification
 - `confirm(options: ConfirmOptions)` - shows a confirmation notification
