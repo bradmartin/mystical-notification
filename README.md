@@ -16,7 +16,8 @@
 `npm install mystical-notification`
 
 ### Usage
-`mystical` is exposed as a library thanks to Webpack so using a `<script>` tag on your html will work. You can also import/require what you need using the module if you're using a module loader for your app.
+If not using a module system you can get the dist file from unpkg CDN here: `https://unpkg.com/mystical-notification@0.5.0` and just add the script tag to your html page to have the `mystical` lib exposed. If you're using modules then it's best to use `npm install mystical-notification` and then import (see TS sample below).
+
 ### JS
 ```js
 mystical.Mystical.alert({
