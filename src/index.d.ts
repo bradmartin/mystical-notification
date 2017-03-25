@@ -15,12 +15,14 @@ export interface AlertOptions {
     backgroundColor?: string;
     color?: string;
     position?: string;
+    backdrop?: boolean;
 }
 export interface ConfirmOptions {
     template: string;
     backgroundColor?: string;
     color?: string;
     position?: string;
+    backdrop?: boolean;
     positiveText?: string;
     negativeText?: string;
 }
