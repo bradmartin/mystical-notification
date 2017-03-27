@@ -18,6 +18,8 @@ function note2() {
   mystical.Mystical.alert({
     color: "#333",
     backgroundColor: "#fff000",
+    backdrop: false,
+    duration: 3000,
     template: `
       <div style="padding: 5px">
           <h3> What </h3>

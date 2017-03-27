@@ -9,15 +9,15 @@ export class Mystical {
         // create the main note div
         const note = createNote(defaults)
         // create the backdrop if backdrop === true
-        let backdrop
-        if (defaults.backdrop === true) {
-            backdrop = createBackdrop()
-            document.body.appendChild(backdrop)
-            backdrop.onclick = (ev: MouseEvent) => {
-                ev.preventDefault()
-                removeNoteFromDom(note, backdrop, defaults.pos)
-            }
+        // let backdrop
+        // if (defaults.backdrop === true) {
+        const backdrop = createBackdrop(defaults)
+        document.body.appendChild(backdrop)
+        backdrop.onclick = (ev: MouseEvent) => {
+            ev.preventDefault()
+            removeNoteFromDom(note, backdrop, defaults.pos)
         }
+        // }
 
         // add click event
         note.onclick = () => {
@@ -62,28 +62,23 @@ export class Mystical {
             const defaults = initDefaults(opts)
             // create the main note div
             const note = createNote(defaults)
-            // create the backdrop if backdrop === true
-            let backdrop
-            if (defaults.backdrop === true) {
-                backdrop = createBackdrop()
-                document.body.appendChild(backdrop)
-                backdrop.onclick = (ev: MouseEvent) => {
-                    ev.preventDefault()
-                    resolve(false)
-                    removeNoteFromDom(note, backdrop, defaults.pos)
-                }
+            // create the backdrop
+            const backdrop = createBackdrop(defaults)
+            document.body.appendChild(backdrop)
+            backdrop.onclick = (ev: MouseEvent) => {
+                ev.preventDefault()
+                resolve(false)
+                removeNoteFromDom(note, backdrop, defaults.pos)
             }
 
             // close on enter and escape key press
             note.onkeydown = (ev: KeyboardEvent) => {
                 if (ev.keyCode === 13 || ev.keyCode === 27) {
                     ev.preventDefault()
-                    removeNoteFromDom(note, backdrop, defaults.pos)
                     resolve(false)
+                    removeNoteFromDom(note, backdrop, defaults.pos)
                 }
             }
-
-
 
             const positiveBtnId = randoID()
             const negativeBtnId = randoID()
@@ -107,8 +102,8 @@ export class Mystical {
             // positive btn event
             const positiveBtn = document.getElementById(positiveBtnId)
             positiveBtn.onclick = (ev: MouseEvent) => {
-                removeNoteFromDom(note, backdrop, defaults.pos)
                 resolve(true)
+                removeNoteFromDom(note, backdrop, defaults.pos)
             }
 
             // negative btn event
@@ -151,9 +146,14 @@ function startTransition(defaults, note, top, bottom) {
 }
 
 
-function createBackdrop() {
+function createBackdrop(defaults) {
     const backdrop = document.createElement("div") as HTMLDivElement
-    backdrop.style.cssText = `position: fixed; height: 100%; width: 100%; top: 0; left: 0; overflow: hidden; background-color: rgba(33,33,33,1.0); opacity: 0.48;`
+    const baseStyle = `position: fixed; height: 100%; width: 100%; top: 0; left: 0; overflow: hidden; background-color: rgba(33,33,33,1.0);`
+    if (defaults.backdrop === true) {
+        backdrop.style.cssText = `${baseStyle} opacity: 0.48;`
+    } else {
+        backdrop.style.cssText = `${baseStyle} opacity: 0;`
+    }
     return backdrop
 }
 
@@ -232,7 +232,7 @@ function initDefaults(opts) {
     const bg = opts.backgroundColor ? opts.backgroundColor : "#333"
     const fg = opts.color ? opts.color : "#fff"
     const pos = opts.position ? opts.position : "top"
-    const backdrop = opts.backdrop ? opts.backdrop : true
+    const backdrop = opts.backdrop === false ? false : true
     const duration = opts.duration ? opts.duration : undefined
     const posText = opts.positiveText ? opts.positiveText : "Yes"
     const negText = opts.negativeText ? opts.negativeText : "No"
