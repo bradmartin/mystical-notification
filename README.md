@@ -41,25 +41,39 @@ mystical.Mystical.alert({
 ```ts
 import { Mystical } from "mystical-notification"
 
+public showInfoMsg() {
+    Mystical.info(`<p>3 records updated. </p>`)
+}
+
+public showWarningMsg() {
+    Mystical.warning(`<p>Oh no, you did something bad!</p>`)
+}
+
 public makeUserChoose() {
     Mystical.confirm({
         backgroundColor: "#fff000",
         color: "#333",
         position: "bottom",
         positiveText: "Do it!",
-        negativeText: "Never!"
+        negativeText: "Never!",
+        template: `
+            <p>Are you sure you want to delete these items? </p>
+        `
     }).then((result: boolean) => {
         if (result === true) {
             /// user clicked positive(confirm) button
-            console.log("Party on Wayne")
+            console.log("Delete EVERYTHING")
         }
     })
 }
 ```
 
 ### Public Methods
+- `info(template: string)` - shows a blue colored info note. Will hide after 3 seconds and no backdrop shown.
+- `success(template: string)` - shows a green colored success note. Will hide after 3 seconds and no backdrop shown.
+- `warning(template: string)` - shows a red colored warning note. Has a backdrop and requires user action to dismiss.
 - `alert(options: AlertOptions)` - shows simple alert notification
-- `confirm(options: ConfirmOptions)` - shows a confirmation notification
+- `confirm(options: ConfirmOptions)` - shows a confirmation notification that requires user interaction to dismiss the note by clicking the backdrop or the positive/negative buttons. Only clicking the positive button returns `true`
 
 
 ### Options Interfaces 

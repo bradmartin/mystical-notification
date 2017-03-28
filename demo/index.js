@@ -28,3 +28,17 @@ function note2() {
     `
   });
 }
+
+function info() {
+  mystical.Mystical.info(`<p>Just some info text. </p>`);
+}
+
+function success() {
+  mystical.Mystical.success(`<p>Saved $500 by switching to Geico</p>`);
+}
+
+function warning() {
+  mystical.Mystical.warning(
+    `<p>Oh no! You just did something really bad. You should quit coding for life. </p>`
+  );
+}

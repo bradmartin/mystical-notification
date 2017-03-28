@@ -1,4 +1,50 @@
 export class Mystical {
+    private static BLUE = "#3489db"
+    private static GREEN = "#64C764"
+    private static RED = "#FF0033"
+    private static WHITE = "#FFF"
+
+    /**
+     * Shows an alert with a blue backgroundColor and white text. No backdrop and duration of 3000.
+     * @param opts [AlertOptions]
+     */
+    public static info(template: string) {
+        const opts: AlertOptions = {
+            backgroundColor: this.BLUE,
+            color: this.WHITE,
+            duration: 3000,
+            template
+        }
+        this.alert(opts)
+    }
+
+    /**
+     * Shows an alert with a green backgroundColor and white text. No backdrop and duration of 3000.
+     * @param opts [AlertOptions]
+     */
+    public static success(template: string) {
+        const opts: AlertOptions = {
+            backgroundColor: this.GREEN,
+            color: this.WHITE,
+            duration: 3000,
+            template
+        }
+        this.alert(opts)
+    }
+
+    /**
+     * Shows an alert with a green backgroundColor and white text. No backdrop and duration of 3000.
+     * @param template [string]
+     */
+    public static warning(template: string) {
+        const opts: AlertOptions = {
+            backgroundColor: this.RED,
+            color: this.WHITE,
+            backdrop: true,
+            template
+        }
+        this.alert(opts)
+    }
 
     /**
      * Creates a simple notification
@@ -8,19 +54,19 @@ export class Mystical {
         const defaults = initDefaults(opts)
         // create the main note div
         const note = createNote(defaults)
-        // create the backdrop if backdrop === true
-        // let backdrop
-        // if (defaults.backdrop === true) {
+        // create the backdrop
         const backdrop = createBackdrop(defaults)
-        document.body.appendChild(backdrop)
-        backdrop.onclick = (ev: MouseEvent) => {
-            ev.preventDefault()
-            removeNoteFromDom(note, backdrop, defaults.pos)
+        if (opts.backdrop === true) {
+            document.body.appendChild(backdrop)
+            backdrop.onclick = (ev: MouseEvent) => {
+                ev.preventDefault()
+                removeNoteFromDom(note, backdrop, defaults.pos)
+            }
         }
-        // }
 
         // add click event
-        note.onclick = () => {
+        note.onclick = (ev: MouseEvent) => {
+            ev.preventDefault()
             removeNoteFromDom(note, backdrop, defaults.pos)
         }
         // close on enter and escape key press
@@ -58,17 +104,18 @@ export class Mystical {
      */
     public static confirm(opts: ConfirmOptions): Promise<boolean> {
         return new Promise((resolve, reject) => {
-
             const defaults = initDefaults(opts)
             // create the main note div
             const note = createNote(defaults)
             // create the backdrop
             const backdrop = createBackdrop(defaults)
             document.body.appendChild(backdrop)
-            backdrop.onclick = (ev: MouseEvent) => {
-                ev.preventDefault()
-                resolve(false)
-                removeNoteFromDom(note, backdrop, defaults.pos)
+            if (opts.backdrop === true) {
+                backdrop.onclick = (ev: MouseEvent) => {
+                    ev.preventDefault()
+                    resolve(false)
+                    removeNoteFromDom(note, backdrop, defaults.pos)
+                }
             }
 
             // close on enter and escape key press
@@ -194,15 +241,14 @@ function removeNoteFromDom(note, backdrop, position) {
     }
 
     tick().then(() => {
-        if (backdrop !== undefined)
+        if (backdrop !== undefined && backdrop.parentElement !== null)
             document.body.removeChild(backdrop)
     })
 
     wait(500).then(() => {
-        if (note !== undefined)
+        if (note !== undefined && note.parentElement !== null)
             document.body.removeChild(note)
     })
-
 }
 
 /**
@@ -231,7 +277,7 @@ function wait(time: number): Promise<any> {
 function initDefaults(opts) {
     const bg = opts.backgroundColor ? opts.backgroundColor : "#333"
     const fg = opts.color ? opts.color : "#fff"
-    const pos = opts.position ? opts.position : "top"
+    const pos = opts.position ? opts.position : "bottom"
     const backdrop = opts.backdrop === false ? false : true
     const duration = opts.duration ? opts.duration : undefined
     const posText = opts.positiveText ? opts.positiveText : "Yes"

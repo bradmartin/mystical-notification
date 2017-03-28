@@ -10,3 +10,4 @@ demo/*.d.ts
 demo/node_modules
 node_modules
 .vscode/
+*.log*
