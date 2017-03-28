@@ -20,7 +20,7 @@ https://embed.plnkr.co/mp4hehLvOFLat3tLwN5j/
 `npm install mystical-notification`
 
 ### Usage
-If not using a module system you can get the dist file from unpkg CDN here: `https://unpkg.com/mystical-notification@0.5.1` and just add the script tag to your html page to have the `mystical` lib exposed. If you're using modules then it's best to use `npm install mystical-notification` and then import (see TS sample below).
+If not using a module system you can get the dist file from unpkg CDN here: `https://unpkg.com/mystical-notification@01.0.0` and just add the script tag to your html page to have the `mystical` lib exposed. If you're using modules then it's best to use `npm install mystical-notification` and then import (see TS sample below).
 
 ### JS
 ```js
