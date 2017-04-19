@@ -33,7 +33,7 @@ export class Mystical {
     }
 
     /**
-     * Shows an alert with a green backgroundColor and white text. No backdrop and duration of 3000.
+     * Shows an alert with a red backgroundColor and white text. No backdrop and duration of 3000.
      * @param template [string]
      */
     public static warning(template: string) {

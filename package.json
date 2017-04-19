@@ -1,6 +1,6 @@
 {
   "name": "mystical-notification",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "Simple customizable web alerts with no dependencies.",
   "main": "dist/mystical",
   "typings": "dist/index.d.ts",

@@ -14,7 +14,7 @@ export declare class Mystical {
      */
     static success(template: string): void;
     /**
-     * Shows an alert with a green backgroundColor and white text. No backdrop and duration of 3000.
+     * Shows an alert with a red backgroundColor and white text. No backdrop and duration of 3000.
      * @param template [string]
      */
     static warning(template: string): void;
