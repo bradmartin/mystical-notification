@@ -9,7 +9,7 @@ http://img.badgesize.io/:https://unpkg.com/mystical-notification.js[|jpg][?compr
 https://embed.plnkr.co/mp4hehLvOFLat3tLwN5j/
 
 ## What is it?
- Fully customizable alert notifications. Current types are *alert* and *confirm*. Two positions for now are *top* and *bottom*.
+ Fully customizable alert notifications. Current types are *info*, *success*, *warning*, *alert* and *confirm*. Two positions for now are *top* and *bottom*.
 
 
 
