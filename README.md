@@ -1,7 +1,6 @@
 [![npm](https://img.shields.io/npm/v/mystical-notification.svg)](https://www.npmjs.com/package/mystical-notification)
 [![npm](https://img.shields.io/npm/dt/mystical-notification.svg?label=npm%20downloads)](https://www.npmjs.com/package/mystical-notification)
 
-http://img.badgesize.io/:https://unpkg.com/mystical-notification.js[|jpg][?compression=gzip][&label=string]
 
 # Mystical-Notification
 
