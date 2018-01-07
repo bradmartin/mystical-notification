@@ -1,5 +1,6 @@
 [![npm](https://img.shields.io/npm/v/mystical-notification.svg)](https://www.npmjs.com/package/mystical-notification)
 [![npm](https://img.shields.io/npm/dt/mystical-notification.svg?label=npm%20downloads)](https://www.npmjs.com/package/mystical-notification)
+[![Donate](https://img.shields.io/badge/Donate-PayPal-green.svg)](https://paypal.me/bradwayne88)
 
 
 # Mystical-Notification
